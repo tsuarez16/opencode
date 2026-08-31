@@ -1,0 +1,12 @@
+// For format details, see https://aka.ms/devcontainer.json
+{
+	"name": "opencode",
+	"image": "oven/bun:1.3.14",
+	"postCreateCommand": "bun install",
+	"forwardPorts": [4096, 3000, 3001],
+	"customizations": {
+		"vscode": {
+			"extensions": ["oven.bun-vscode"]
+		}
+	}
+}
