@@ -55,14 +55,25 @@ function badRequest<A, R>(effect: Effect.Effect<A, ProjectCopy.Error, R>) {
 }
 
 function message(error: ProjectCopy.Error) {
-  if (error instanceof ProjectCopy.SourceDirectoryNotFoundError)
-    return `Project copy source not found: ${error.directory}`
-  if (error instanceof ProjectCopy.DestinationExistsError)
-    return `Project copy destination already exists: ${error.directory}`
-  if (error instanceof ProjectCopy.DirectoryUnavailableError)
-    return `Project copy directory unavailable: ${error.directory}`
-  if (error instanceof ProjectCopy.InvalidDirectoryError) return `Invalid project copy directory: ${error.directory}`
-  if (error instanceof ProjectCopy.StrategyUnavailableError)
-    return `Project copy strategy unavailable: ${error.strategy}`
-  return error.message
+  let result: string
+  switch (error._tag) {
+    case "ProjectCopy.SourceDirectoryNotFoundError":
+      result = `Project copy source not found: ${error.directory}`
+      break
+    case "ProjectCopy.DestinationExistsError":
+      result = `Project copy destination already exists: ${error.directory}`
+      break
+    case "ProjectCopy.DirectoryUnavailableError":
+      result = `Project copy directory unavailable: ${error.directory}`
+      break
+    case "ProjectCopy.InvalidDirectoryError":
+      result = `Invalid project copy directory: ${error.directory}`
+      break
+    case "ProjectCopy.StrategyUnavailableError":
+      result = `Project copy strategy unavailable: ${error.strategy}`
+      break
+    default:
+      result = error.message
+  }
+  return result
 }
