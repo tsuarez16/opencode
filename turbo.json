@@ -42,6 +42,10 @@
     "@opencode-ai/session-ui#test": {
       "dependsOn": ["^build"],
       "outputs": []
+    },
+    "@opencode-ai/server#test": {
+      "dependsOn": ["^build"],
+      "outputs": []
     }
   }
 }
