@@ -54,7 +54,7 @@ function badRequest<A, R>(effect: Effect.Effect<A, ProjectCopy.Error, R>) {
   )
 }
 
-function message(error: ProjectCopy.Error) {
+export function message(error: ProjectCopy.Error) {
   let result: string
   switch (error._tag) {
     case "ProjectCopy.SourceDirectoryNotFoundError":
